@@ -33,4 +33,20 @@ public class EchoClient {
         } 
     }
     
+    public static void menu(){
+        System.out.println("1. Crea Account");
+        System.out.println("2. Login");
+        System.out.println("3. Codice carta");
+        System.out.println("4. Versamento");
+        System.out.println("5. Prelievo");
+        System.out.println("6. Saldo corrente");
+        System.out.println("7. Elimina account");
+        System.out.println("8. Crea conto");
+        System.out.println("9. Bonifico");
+        System.out.println("10. Giroconto");
+        System.out.println("11. Mutuo");
+        System.out.println("12. Finanziamento");
+        System.out.println("Assistenza");
+    }
+    
 }
