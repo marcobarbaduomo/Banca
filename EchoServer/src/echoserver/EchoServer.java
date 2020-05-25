@@ -1,21 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package echoserver;
 
-/**
- *
- * @author franc
- */
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.InetAddress;
+import java.io.*;
+
+
 public class EchoServer {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] argv) {
+        try {
+            ServerSocket server = new ServerSocket(3000, 10);
+            System.out.println("Server on");
+            Socket client = null;
+
+            while (true) {
+                try {
+                    client = server.accept();
+
+                    int c;
+                    String response = "";
+                    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                    PrintWriter out = new PrintWriter(new OutputStreamWriter(client.getOutputStream()), true);
+
+                    System.out.print("Connection received: [" + client.getInetAddress().getHostAddress() + "] ");
+
+                    response = in.readLine();
+                    while(!response.equals("exit")){
+                        System.out.println("String received = "+response);
+                        out.write(response.toUpperCase());
+                        response = in.readLine();
+                    }
+                    System.out.println("Exit from while");
+                    client.close();
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    try {
+                        if (client != null) {
+                            client.close();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }
