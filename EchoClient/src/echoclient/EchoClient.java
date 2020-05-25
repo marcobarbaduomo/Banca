@@ -15,7 +15,6 @@ public class EchoClient {
             Socket echoSocket = new Socket(hostName, portNumber);
             PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            // BufferedReader from keyboard
             BufferedReader stdIn =new BufferedReader(new InputStreamReader(System.in));
             
             String userInput;
